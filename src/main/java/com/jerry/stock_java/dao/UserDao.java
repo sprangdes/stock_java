@@ -18,6 +18,7 @@ public class UserDao {
 
     public User getUsersByName(String user_name) {
         String sql = "SELECT user_id, user_name, user_password FROM users WHERE user_name = :user_name";
+
         Map<String, Object> map = new HashMap<>();
         map.put("user_name", user_name);
         List<User> userList =  namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
