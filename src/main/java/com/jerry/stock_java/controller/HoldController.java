@@ -1,2 +1,4 @@
-package com.jerry.stock_java.controller;public class HoldController {
+package com.jerry.stock_java.controller;
+
+public class HoldController {
 }
