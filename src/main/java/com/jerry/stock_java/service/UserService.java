@@ -22,4 +22,12 @@ public class UserService {
         User user = userDao.getUsersByName(user_name);
         return user.getUser_password();
     }
+
+    public int createUser(User user){return userDao.createUser(user);}
+
+    public int updateUserName(String user_name, String new_user_name){
+        User user = getUsersByName(user_name);
+        user.setUser_name(new_user_name);
+        return userDao.updateUser(user);
+    }
 }
