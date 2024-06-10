@@ -11,23 +11,27 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public User getUsersByName(String user_name){return userDao.getUsersByName(user_name);}
-
-    public int getUserIdByName(String user_name){
-        User user = userDao.getUsersByName(user_name);
-        return user.getUser_id();
+    public User getUserById(int user_id) {
+        return userDao.getUsersById(user_id);
     }
 
-    public String getPasswordByName(String user_name){
-        User user = userDao.getUsersByName(user_name);
-        return user.getUser_password();
+    public int createUser(User user){
+        return userDao.createUser(user);
     }
 
-    public int createUser(User user){return userDao.createUser(user);}
-
-    public int updateUserName(String user_name, String new_user_name){
-        User user = getUsersByName(user_name);
+    public void updateUserName(int user_id, String new_user_name){
+        User user = getUserById(user_id);
         user.setUser_name(new_user_name);
-        return userDao.updateUser(user);
+        userDao.updateUser(user);
+    }
+
+    public void updateUserPassword(int user_id, String new_user_password){
+        User user = getUserById(user_id);
+        user.setUser_name(new_user_password);
+        userDao.updateUser(user);
+    }
+
+    public void deleteUser(int user_id){
+        userDao.deleteUser(user_id);
     }
 }

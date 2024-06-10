@@ -19,13 +19,11 @@ public class UserDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public User getUsersByName(String user_name) {
-        String sql = "SELECT user_id, user_name, user_password FROM users WHERE user_name = :user_name";
-
+    public User getUsersById(int user_id) {
+        String sql = "SELECT user_id, user_name, user_password FROM users WHERE user_id = :user_id";
         Map<String, Object> map = new HashMap<>();
-        map.put("user_name", user_name);
-        List<User> userList =  namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
-
+        map.put("user_id", user_id);
+        List<User> userList = namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
         if(!userList.isEmpty()){
             return userList.get(0);
         }else{
@@ -34,26 +32,29 @@ public class UserDao {
     }
 
     public int createUser(User user) {
-        String sql = "INSERT INTO users(user_name, user_password) VALUES (:user_name, :user_password)";
-
+        String sql = "INSERT INTO users(user_name, user_password) VALUES(:user_name, :user_password)";
         Map<String, Object> map = new HashMap<>();
         map.put("user_name", user.getUser_name());
         map.put("user_password", user.getUser_password());
-
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
         return keyHolder.getKey().intValue();
 
     }
 
-    public int updateUser(User user) {
+    public void updateUser(User user) {
         String sql = "UPDATE users SET user_name = :user_name, user_password = :user_password WHERE user_id = :user_id";
-
         Map<String, Object> map = new HashMap<>();
         map.put("user_id", user.getUser_id());
         map.put("user_name", user.getUser_name());
         map.put("user_password", user.getUser_password());
+        namedParameterJdbcTemplate.update(sql, map);
+    }
 
-        return namedParameterJdbcTemplate.update(sql, map);
+    public void deleteUser(int user_id) {
+        String sql = "DELETE FROM users WHERE user_id = :user_id";
+        Map<String, Object> map = new HashMap<>();
+        map.put("user_id", user_id);
+        namedParameterJdbcTemplate.update(sql, map);
     }
 }
