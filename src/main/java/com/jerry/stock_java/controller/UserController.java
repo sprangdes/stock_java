@@ -51,20 +51,20 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user){
         int user_id_created = userService.createUser(user);
         if(user_id_created >= 1){
-            return ResponseEntity.status(HttpStatus.CREATED).body(user);
+            return ResponseEntity.status(HttpStatus.CREATED).body(userService.getUserById(user_id_created));
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
-    @PutMapping("/users/{user_id}")
+    @PutMapping("/users/{user_id}/username")
     public ResponseEntity<User> updateUserName(@PathVariable int user_id, @RequestBody UserNameRequest userNameRequest) {
         String new_user_name = userNameRequest.getUser_name();
         userService.updateUserName(user_id, new_user_name);
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUserById(user_id));
     }
 
-    @PutMapping("/users/{user_id}")
+    @PutMapping("/users/{user_id}/password")
     public ResponseEntity<User> updateUserPassword(@PathVariable int user_id, @RequestBody UserPasswordRequest userPasswordRequest) {
         String new_user_password = userPasswordRequest.getUser_password();
         userService.updateUserPassword(user_id, new_user_password);

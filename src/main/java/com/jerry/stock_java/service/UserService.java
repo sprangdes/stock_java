@@ -27,7 +27,7 @@ public class UserService {
 
     public void updateUserPassword(int user_id, String new_user_password){
         User user = getUserById(user_id);
-        user.setUser_name(new_user_password);
+        user.setUser_password(new_user_password);
         userDao.updateUser(user);
     }
 
