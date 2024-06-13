@@ -11,27 +11,27 @@ public class StockService {
     @Autowired
     private StockDao stockDao;
 
-    public Stock getStockById(String stock_id) {
-        return stockDao.getStockById(stock_id);
+    public Stock getStockByCode(String stock_code) {
+        return stockDao.getStockByCode(stock_code);
     }
 
     public void createStock(Stock stock) {
         stockDao.createStock(stock);
     }
 
-    public void updateStockId(String stock_id, String new_stock_id) {
-        Stock stock = stockDao.getStockById(stock_id);
-        stock.setStock_id(new_stock_id);
+    public void updateStockCode(String stock_code, String new_stock_code) {
+        Stock stock = stockDao.getStockByCode(stock_code);
+        stock.setStock_code(new_stock_code);
         stockDao.updateStock(stock);
     }
 
-    public void updateStockName(String stock_id, String new_stock_name) {
-        Stock stock = stockDao.getStockById(stock_id);
+    public void updateStockName(String stock_code, String new_stock_name) {
+        Stock stock = stockDao.getStockByCode(stock_code);
         stock.setStock_name(new_stock_name);
         stockDao.updateStock(stock);
     }
 
-    public void deleteStock(String stock_id) {
-        stockDao.deleteStockById(stock_id);
+    public void deleteStockByCode(String stock_code) {
+        stockDao.deleteStockByCode(stock_code);
     }
 }
