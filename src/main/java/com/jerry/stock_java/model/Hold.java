@@ -3,32 +3,24 @@ package com.jerry.stock_java.model;
 public class Hold {
 
     private int id;
-    private int user_id;
-    private String stock_id;
+    private String user_name;
+    private String stock_code;
     private int shares_hold;
 
-    public int getId() {
-        return id;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getStock_code() {
+        return stock_code;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getStock_id() {
-        return stock_id;
-    }
-
-    public void setStock_id(String stock_id) {
-        this.stock_id = stock_id;
+    public void setStock_code(String stock_code) {
+        this.stock_code = stock_code;
     }
 
     public int getShares_hold() {
@@ -37,5 +29,13 @@ public class Hold {
 
     public void setShares_hold(int shares_hold) {
         this.shares_hold = shares_hold;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

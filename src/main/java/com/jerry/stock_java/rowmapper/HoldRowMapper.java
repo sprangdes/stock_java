@@ -11,8 +11,8 @@ public class HoldRowMapper implements RowMapper<Hold> {
     public Hold mapRow(ResultSet rs, int rowNum) throws SQLException {
         Hold hold = new Hold();
         hold.setId(rs.getInt("id"));
-        hold.setUser_id(rs.getInt("user_id"));
-        hold.setStock_id(rs.getString("stock_id"));
+        hold.setUser_name(rs.getString("user_name"));
+        hold.setStock_code(rs.getString("stock_code"));
         hold.setShares_hold(rs.getInt("shares_hold"));
         return hold;
     }
